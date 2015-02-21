@@ -9,12 +9,13 @@ namespace CycleSales.EF6.ConsoleApp
     {
         static void Main(string[] args)
         {
-            //
-            // Run Update-Database in "Package Manager Console" before run the application.
-            //
-
             // if you want to use sql server 2014 localdb, change the connection string from CycleSalesContext
             // remember that sql2014 localdb default instance name is (localdb)\mssqllocaldb
+
+            using (var db = new CycleSalesContext())
+            {
+                db.Database.Initialize(false);
+            }
             
             Console.Write("1 [select], 2 [round-fail], 3 [round-ok], 4 [update single command]: ");
             var test = Console.ReadLine();

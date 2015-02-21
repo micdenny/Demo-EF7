@@ -6,7 +6,7 @@ namespace CycleSales.EF6.ConsoleApp.CycleSalesModel
     {
         static CycleSalesContext()
         {
-            Database.SetInitializer<CycleSalesContext>(null);
+            Database.SetInitializer<CycleSalesContext>(new MigrateDatabaseToLatestVersion<CycleSalesContext, Migrations.Configuration>());
         }
 
         public CycleSalesContext()
