@@ -78,7 +78,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(161, 491);
+            this.buttonSave.Location = new System.Drawing.Point(161, 413);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(6);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(95, 33);
@@ -104,7 +104,7 @@
             this.textBox2.Margin = new System.Windows.Forms.Padding(6);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(329, 243);
+            this.textBox2.Size = new System.Drawing.Size(329, 165);
             this.textBox2.TabIndex = 15;
             // 
             // warrantyBindingSource
@@ -249,7 +249,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 713);
+            this.ClientSize = new System.Drawing.Size(565, 601);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.groupWarrantyDetails);
             this.Controls.Add(this.but_Lookup);
