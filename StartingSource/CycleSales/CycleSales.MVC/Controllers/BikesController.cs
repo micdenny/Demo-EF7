@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using CycleSales.CycleSalesModel;
 using CycleSales.WarrantyModel;
 using Microsoft.Data.Entity;
+using System.Diagnostics;
 
 namespace CycleSalesPublicSite.Controllers
 {
@@ -18,7 +19,35 @@ namespace CycleSalesPublicSite.Controllers
 
         public ActionResult Index()
         {
-            return View(catalogDb.Bikes.ToList());
+            return View(catalogDb.Bikes.Take(20).ToList());
+        }
+
+        public ActionResult BulkImport(int howMany)
+        {
+            var nextId = catalogDb.Bikes.Max(b => b.Bike_Id) + 1;
+
+            var sw = Stopwatch.StartNew();
+            //var bikes = new List<Bike>();
+            for (int i = 0; i < howMany; i++)
+            {
+                catalogDb.Bikes.Add(new Bike
+                {
+                    Bike_Id = nextId + i,
+                    Description = Guid.NewGuid().ToString(),
+                    ImageUrl = Guid.NewGuid().ToString(),
+                    ModelNo = Guid.NewGuid().ToString(),
+                    Name = Guid.NewGuid().ToString(),
+                    Retail = 100m + i
+                });
+            }
+            //catalogDb.Bikes.AddRange(bikes);
+            ViewBag.AddTiming = sw.ElapsedMilliseconds;
+
+            sw.Restart();
+            catalogDb.SaveChanges();
+            ViewBag.SaveTiming = sw.ElapsedMilliseconds;
+            
+            return View("Index", catalogDb.Bikes.Take(20).ToList());
         }
 
         public ActionResult Details(int? id)

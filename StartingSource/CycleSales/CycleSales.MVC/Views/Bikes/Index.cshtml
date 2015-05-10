@@ -9,6 +9,35 @@
     <p class="lead">No matter what your riding style, we have the perfect bike for you. Each bike is built to the highest quality standards and designed to last.</p>
 </div>
 
+<h2>Bulk Bikes Import</h2>
+@using (Html.BeginForm("BulkImport", "Bikes", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("HowMany", "How Many", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="HowMany" name="HowMany" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Import" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@if (ViewBag.AddTiming != null)
+{
+    <div>Bikes added to EF context in @ViewBag.AddTiming ms</div>
+}
+@if (ViewBag.SaveTiming != null)
+{
+    <div>Bikes saved to database in @ViewBag.SaveTiming ms</div>
+    <div>Total time spent is @(ViewBag.AddTiming + ViewBag.SaveTiming) ms</div>
+}
+<hr />
+
 <table class="table">
     @foreach (var item in Model)
     {
